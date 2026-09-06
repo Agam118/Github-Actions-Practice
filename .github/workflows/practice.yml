@@ -1,5 +1,5 @@
 name: github-actions-practice # name of the workflow 
-on: workflow_dispatch # trigger on which event 
+on: push # trigger on which event 
 jobs:
   checkker:
    runs-on: ubuntu-latest 
