@@ -7,4 +7,4 @@ jobs:
     - name: checkout the html code # this the name of the step 
       uses: actions/checkout@v6  # this step is using a actions that is why uses 
     - name: context object overview
-      run: "echo ${{toJSON(github)}}" # runnning some command. 
+      run: echo "${{toJSON(github)}}" # runnning some command. 
