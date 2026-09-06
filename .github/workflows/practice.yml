@@ -2,8 +2,8 @@ name: github-actions-practice # name of the workflow
 on: workflow_dispatch # trigger on which event 
 jobs:
   checkker:
-  runs-on: ubuntu-latest 
-  steps:
+   runs-on: ubuntu-latest 
+   steps:
     - name: checkout the html code # this the name of the step 
       uses: actions/checkout # this step is using a actions that is why uses 
     - name: context object overview
