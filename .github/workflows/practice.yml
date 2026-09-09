@@ -41,6 +41,7 @@ jobs:
       run: cat $GITHUB_OUTPUT
   Uploader_Job:
     needs: checkker # needs - to make the job dependable on another ( v.imp key concept) || to ~
+    environment: testing
     runs-on: ubuntu-latest
     steps:
       - name: ustilizin my secrets of ${{env.Name}}
