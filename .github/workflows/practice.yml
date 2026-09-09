@@ -17,6 +17,22 @@ jobs:
       uses: actions/checkout@v6  # this step is using a actions that is why uses 
     - name: context object overview
       run: echo "${{toJSON(github)}}" # runnning some command. 
+    - name: uploading raw data to artifacts 
+      uses: actions/upload-artifacts@v7 
+      with:
+        name: html-code # writng '|' in yaml meanse writng single line to multiple , that eveything below it will become like  / dist/json/newfile   
+        path: |
+           index.html 
+  Uploader_Job:
+    needs: checkker # needs - to make the job dependable on another ( v.imp key concept) || to ~
+    runs-on: ubuntu-latest
+    steps:
+      - name: download the artifacts
+        uses: actions/download-artifacts@v8
+        with:
+          name: html-code
+      
+
 
 
 # nothing will be started with : -> it will always be used in end ":"
