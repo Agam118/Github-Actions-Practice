@@ -12,9 +12,9 @@ on:
 env:
   Name: "Agam Bajaj"
 jobs:
-  environment: testing # this is environment to access secrets 
   checkker:
    runs-on: ubuntu-latest 
+   environment: testing # this is environment to access secrets 
    outputs: 
      main-key: ${{ steps.output_generator.outputs.key }} # learning steps.id.outputs.key ( in $GITHUB_OUTPUT the key value pair are arranged like {outputs:{ key1:value1 , key2:value2 , key3:value3}} )
    steps:
