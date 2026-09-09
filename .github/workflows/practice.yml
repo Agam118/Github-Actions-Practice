@@ -13,7 +13,7 @@ jobs:
   checkker:
    runs-on: ubuntu-latest 
    outputs: 
-   main-key: ${{ steps.output_generator.key }}
+     main-key: ${{ steps.output_generator.key }}
    steps:
     - name: checkout the html code # this the name of the step 
       uses: actions/checkout@v6  # this step is using a actions that is why uses 
