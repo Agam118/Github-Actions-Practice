@@ -18,7 +18,7 @@ jobs:
     - name: context object overview
       run: echo "${{toJSON(github)}}" # runnning some command. 
     - name: uploading raw data to artifacts 
-      uses: actions/upload-artifacts@v7 
+      uses: actions/upload-artifact@v7 
       with:
         name: html-code # writng '|' in yaml meanse writng single line to multiple , that eveything below it will become like  / dist/json/newfile   
         path: |
@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: download the artifacts
-        uses: actions/download-artifacts@v8
+        uses: actions/download-artifact@v8
         with:
           name: html-code
       
