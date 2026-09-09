@@ -8,7 +8,7 @@ on:
  pull_request: # evvent with activity_types. 
        types:
          - opened # types will named as past tense -> opened , closed , created , edited 
- workflow_dispactch:  
+ workflow_dispatch:  
 jobs:
   checkker:
    runs-on: ubuntu-latest 
@@ -20,3 +20,4 @@ jobs:
 
 
 # nothing will be started with : -> it will always be used in end ":"
+
