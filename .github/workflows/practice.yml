@@ -1,5 +1,14 @@
 name: github-actions-practice # name of the workflow 
-on: push # trigger on which event 
+on: 
+ push: # trigger on which event 
+   branches:
+       - main
+       - 'dev-*'
+       - 'IPR-*'
+ pull_request: # evvent with activity_types. 
+       types:
+         - opened # types will named as past tense -> opened , closed , created , edited 
+ workflow_dispactch:  
 jobs:
   checkker:
    runs-on: ubuntu-latest 
@@ -8,3 +17,6 @@ jobs:
       uses: actions/checkout@v6  # this step is using a actions that is why uses 
     - name: context object overview
       run: echo "${{toJSON(github)}}" # runnning some command. 
+
+
+# nothing will be started with : -> it will always be used in end ":"
