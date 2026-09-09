@@ -9,14 +9,23 @@ on:
        types:
          - opened # types will named as past tense -> opened , closed , created , edited 
  workflow_dispatch:  
+env:
+  Name: "Agam Bajaj"
 jobs:
+  environment: testing # this is environment to access secrets 
   checkker:
    runs-on: ubuntu-latest 
    outputs: 
-     main-key: ${{ steps.output_generator.key }}
+     main-key: ${{ steps.output_generator.outputs.key }} # learning steps.id.outputs.key ( in $GITHUB_OUTPUT the key value pair are arranged like {outputs:{ key1:value1 , key2:value2 , key3:value3}} )
    steps:
     - name: checkout the html code # this the name of the step 
       uses: actions/checkout@v6  # this step is using a actions that is why uses 
+    - name: catcheing implemetnation 
+      uses: actions/catche@v6
+      with:
+        path: |
+           index.html
+        key: ${{ hashFiles('index.html')}}
     - name: context object overview
       run: echo "${{toJSON(github)}}" # runnning some command. 
     - name: uploading raw data to artifacts 
@@ -27,11 +36,17 @@ jobs:
            index.html 
     - name: setitng up output and showing it 
       id: output_generator  
-      run: echo "key=helloworld" >> "$GITHUB_OUTPUT"  # a context variable that store key=value pair.  
+      run: echo "key=helloworld" >> "$GITHUB_OUTPUT"  # a context variable that store key=value pair. 
+    - name: output of GITHUB_OUTPUT
+      run: cat $GITHUB_OUTPUT
   Uploader_Job:
     needs: checkker # needs - to make the job dependable on another ( v.imp key concept) || to ~
     runs-on: ubuntu-latest
     steps:
+      - name: ustilizin my secrets of ${{env.Name}}
+        run: echo "${{secrets.MONGO_DB_USERNAME}}"
+      - name: let you know my password
+        run: echo "${{secrets.MONGO_DB_PASSWORD}}"
       - name: download the artifacts
         uses: actions/download-artifact@v8
         with:
