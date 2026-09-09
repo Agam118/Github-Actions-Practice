@@ -27,7 +27,7 @@ jobs:
            index.html 
     - name: setitng up output and showing it 
       id: output_generator  
-      run: echo "key=helloworld" >> "$GITHUB_OUPUT  # a context variable that store key=value pair.  
+      run: echo "key=helloworld" >> "$GITHUB_OUPUT"  # a context variable that store key=value pair.  
   Uploader_Job:
     needs: checkker # needs - to make the job dependable on another ( v.imp key concept) || to ~
     runs-on: ubuntu-latest
