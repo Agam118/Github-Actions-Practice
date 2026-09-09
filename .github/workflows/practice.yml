@@ -12,6 +12,8 @@ on:
 jobs:
   checkker:
    runs-on: ubuntu-latest 
+   outputs: 
+   main-key: ${{ steps.output_generator.key }}
    steps:
     - name: checkout the html code # this the name of the step 
       uses: actions/checkout@v6  # this step is using a actions that is why uses 
@@ -23,6 +25,9 @@ jobs:
         name: html-code # writng '|' in yaml meanse writng single line to multiple , that eveything below it will become like  / dist/json/newfile   
         path: |
            index.html 
+    - name: setitng up output and showing it 
+      id: output_generator  
+      run: echo "key=helloworld" >> "$GITHUB_OUPUT  # a context variable that store key=value pair.  
   Uploader_Job:
     needs: checkker # needs - to make the job dependable on another ( v.imp key concept) || to ~
     runs-on: ubuntu-latest
@@ -31,6 +36,8 @@ jobs:
         uses: actions/download-artifact@v8
         with:
           name: html-code
+      - name: using outputs from checkker 
+        run: echo "${{needs.checkker.outputs.main-key}}"
       
 
 
